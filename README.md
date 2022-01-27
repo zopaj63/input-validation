@@ -1,3 +1,3 @@
 # input-validation
 
-input validations width pattern attribute in html
+input validations with pattern attribute in html
