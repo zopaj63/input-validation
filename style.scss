@@ -1,0 +1,145 @@
+$blue: #0597c7;
+$black: #111436;
+$white: #ffffff;
+$red: #d10239;
+$green: #099269;
+$active-state-color: $black;
+$default-state-color: $black;
+$error-state-color: $red;
+$success-state-color: $green;
+body,
+html {
+    background-color: $white;
+    height: 100%;
+    font-family: "Poppins", sans-serif;
+}
+
+.form-container {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: 50px;
+    margin-left: 30px;
+    width: 25%;
+    margin: 0 auto;
+    font-size: 16px;
+}
+
+.label {
+    position: absolute;
+    left: 0px;
+    transition: transform 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    bottom: 40px;
+    font-size: 20px;
+    color: $black;
+    cursor: text;
+}
+
+.button {
+    cursor: pointer;
+    border: none;
+    padding: 5px 10px;
+    transition: 0.2s ease-in-out;
+    transition-property: color, background-color;
+    background-color: $black;
+    color: $white;
+}
+
+// remove default placeholders
+::-webkit-input-placeholder {
+    color: transparent;
+}
+
+::-moz-placeholder {
+    color: transparent;
+}
+
+:-ms-input-placeholder {
+    color: transparent;
+}
+
+:-moz-placeholder {
+    color: transparent;
+}
+
+.input {
+    border: none;
+    padding: 5px 2px;
+    border-bottom: 3px solid $black;
+    background-color: transparent;
+    border-color: $black;
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 10px;
+    &~.msg {
+        &:before {
+            position: absolute;
+            top: -100px;
+            display: block;
+            left: 0;
+            right: 0;
+            color: $white;
+            padding: 7px 15px;
+            transition: background-color 0.2s ease-in-out;
+            border-radius: 3px;
+        }
+    }
+    &:not(:placeholder-shown) {
+        border-color: $active-state-color;
+        color: $active-state-color;
+        &~.label {
+            color: $active-state-color;
+            transform: translateY(-140%);
+        }
+    }
+    &:focus {
+        outline: none;
+        color: $active-state-color;
+        border-color: $active-state-color;
+        &:placeholder-shown {
+            outline: none;
+            border-color: $active-state-color;
+            color: $active-state-color;
+            &~.label {
+                color: $active-state-color;
+                transform: translateY(-140%);
+            }
+            &~.button {
+                color: $white;
+                background-color: $active-state-color;
+            }
+        }
+        &:valid {
+            color: $success-state-color;
+            border-color: $success-state-color;
+            &~.msg {
+                &:before {
+                    content: "Input is valid";
+                    background-color: lighten($success-state-color, 10%);
+                }
+            }
+            &~.label {
+                color: $success-state-color;
+            }
+            &~.button {
+                background-color: $success-state-color;
+            }
+        }
+        &:invalid {
+            color: $error-state-color;
+            border-color: $error-state-color;
+            &~.msg {
+                &:before {
+                    content: "Input is invalid";
+                    background-color: lighten($red, 10%);
+                }
+            }
+            &~.label {
+                color: $error-state-color;
+            }
+            &~.button {
+                background-color: $error-state-color;
+            }
+        }
+    }
+}
